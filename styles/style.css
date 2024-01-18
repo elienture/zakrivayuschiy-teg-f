@@ -102,7 +102,7 @@
 
 .card_list {
   display: grid;
-  gap: 50px;
+  gap: 54px;
 }
 
 .card {
@@ -114,7 +114,37 @@
   font-size: 18px;
   font-weight: var(--font-title-weight);
   border-bottom: 2px solid var(--border-color);
-  padding: 4px 10px;
+  padding: 4px 10px 6px;
+}
+
+.card_image_wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.card_image_label {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 1;
+  opacity: 0.5;
+  color: var(--text-color);
+  mix-blend-mode: hard-light;
+  font-family: "PressStart2P";
+  font-size: 14px;  
+  line-height: normal;
+  text-shadow: -1px 0px var(--page-background-color), 0px 1px var(--page-background-color), 1px 0px var(--page-background-color), 0px -1px var(--page-background-color);
+
+}
+
+@supports (
+  (text-stroke: 1px var(--page-background-color)) or
+    (-webkit-text-stroke: 1px var(--page-background-color))
+) {
+  .card__image_label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--page-background-color);
+  }
 }
 
 .card_content_template {
@@ -169,100 +199,228 @@
 .filter_multiple {
   filter: brightness(120%) hue-rotate(180deg) contrast(20%);
 }
-/* */
+/* конец секции */
 
 .card_buttons {
   display: flex;
   flex-direction: row;
   justify-content: end;
   padding: 0 25px 25px 0;
-  gap: 12px;
+  gap: 10px;
 }
 
 .card__icon-button {
+  display: flex;
+  align-items: center;
   position: relative;
   border: none;
   background-color: transparent;
-  transition: outline 0.3s ease;
+  transition: border 0.3s ease;
   cursor: pointer;
+  padding: 0;
 }
 
 .card__icon-button:focus {
-  outline: none;
+  border: none;
 }
 
 .card__icon-button:focus-visible {
-  outline: 2px solid var(--border-color);
+  border: 2px solid var(--border-color);
 }
 
-.card__icon-button:hover {
-  .like-icon {
-    .core {
-      fill: var(--heart-contour-color);
-      transition: fill 0.3 linear;
-    }
-
-    .main-body {
-      fill: var(--heart-contour-color);
-      transition: fill 0.3 linear 0.05s;
-    }
-  }
-}
-
-.card__icon-button:active {
-  .like-icon {
-    .core {
-      fill: var(--heart-sparks-color);
-      transition: fill 0.3 linear;
-    }
-
-    .main-body {
-      fill: var(--heart-sparks-color);
-      transition: fill 0.3 linear 0.05s;
-    }
-  }
-}
+/* секция кнопки like */
 
 .card__like-button {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 90%;
+  background-color: transparent;
+  inline-size: 130px;
+  color: var(--text-color);
+}
+
+.button_like {
   position: relative;
-  padding: 9px 17px;
-  z-index: 1;
   border: 2px solid var(--border-color);
-  background: transparent;
-  justify-content: center;
-  align-items: center;
   transition: box-shadow 0.3s ease;
   cursor: pointer;
 }
 
-.card__like-button:focus {
+.button_like:focus {
   outline: none;
 }
 
-.card__like-button:focus-visible {
+.button_like:focus-visible {
   box-shadow: 2px 2px 0px 0px var(--border-color);
 }
 
-.card__like-button::before {
-  content: "";
+.button_like::before {
+  content: '';
   position: absolute;
-  background: var(--text-color);
-  z-index: -1;
+  inset: 0;
+  z-index: 1;
+  background-color: var(--border-color);
   transition: transform 0.5s ease-in-out;
   transform: scaleX(0);
   transform-origin: left;
 }
 
-.card__like-button:hover::before {
+.button_like:hover::before {
   transform: scaleX(1);
 }
 
 .button__text {
-  z-index: 10;
+  position: relative;
+  z-index: 2;
+  display: block;
+  color: var(--button-text-color);
+  padding: 9px 17px;
+  font-family: "PressStart2P";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 90%;
+  mix-blend-mode: difference;
+}
+
+/* конец секции */
+
+.button_save_icon {
+  block-size: 28px;
+  inline-size: 28px;
+}
+
+.button_save_text {
   color: var(--text-color);
   font-family: "PressStart2P";
   font-size: 14px;
   font-weight: 400;
   line-height: 90%;
-  mix-blend-mode: difference;
+}
+
+.button_save {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 18px;
+  background-color: var(--page-background-color);
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 54px 25px 102px 25px;
+}
+
+/* секция dialog */
+
+.dialog {
+  position: fixed;
+  padding: 32px 42px;
+  border: 2px solid var(--border-color);
+  background-color: var(--page-background-color);
+  font-family: "PressStart2P";
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  text-transform: uppercase;
+  max-inline-size: 343px;
+}
+
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 75%);
+}
+
+.dialog_content {
+  display: grid;
+  grid-template-columns: 39px 1fr;
+  grid-template-rows: 1fr fit-content; 
+  row-gap: 30px;
+}
+
+.dialog_text {
+  display: flex;
+  padding-left: 20px;
+}
+
+.dialog_icon {
+  align-self: center;
+  justify-self: start;
+  inline-size: 39px;
+  block-size: 39px;
+}
+
+.dialog_button {
+  display: grid;
+  grid-area: 2 / 1 / 3 / 3;
+  width: 100%;
+  justify-self: center;
+  align-self: center;
+  border: 2px solid var(--border-color);
+  background-color: var(--page-background-color);
+  cursor: pointer;
+}
+
+.dialog_button_text {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  padding: 9px 17px;
+  text-transform: uppercase;
+}
+
+/* конец секции */
+
+@media (width > 376px) {
+
+  .header {
+    max-width: 43.5rem;
+    height: 22.75rem;
+    margin-inline: auto;
+  }
+
+  .header_title {
+    font-size: 65px;
+    padding-block-start: 8.5rem;
+  }
+
+  .header_subtitle {
+    font-size: 23px;
+    padding-bottom: 20px;
+  }
+
+  .theme-menu__list {
+    padding-inline-start: 16px;
+    gap: 12px;
+  }
+
+  .main {
+    max-width: 43.5rem;
+    margin-inline: auto;  
+  }
+
+  .image {
+    width: 696px;
+    height: 696px;
+  }
+
+  .card_list {
+    gap: 57px;
+  }
+
+  .button_save {
+    flex-direction: row;
+    margin-top: 48px;
+  }
+
+  .button_save_icon {
+    block-size: 21px;
+    inline-size: 21px;
+  }
 }
