@@ -131,10 +131,11 @@
   color: var(--text-color);
   mix-blend-mode: hard-light;
   font-family: "PressStart2P";
-  font-size: 14px;  
+  font-size: 14px;
   line-height: normal;
-  text-shadow: -1px 0px var(--page-background-color), 0px 1px var(--page-background-color), 1px 0px var(--page-background-color), 0px -1px var(--page-background-color);
-
+  text-shadow: -1px 0px var(--page-background-color),
+    0px 1px var(--page-background-color), 1px 0px var(--page-background-color),
+    0px -1px var(--page-background-color);
 }
 
 @supports (
@@ -255,7 +256,7 @@
 }
 
 .button_like::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -340,7 +341,7 @@
 .dialog_content {
   display: grid;
   grid-template-columns: 39px 1fr;
-  grid-template-rows: 1fr fit-content; 
+  grid-template-rows: 1fr fit-content;
   row-gap: 30px;
 }
 
@@ -378,7 +379,6 @@
 /* конец секции */
 
 @media (width > 376px) {
-
   .header {
     max-width: 43.5rem;
     height: 22.75rem;
@@ -402,7 +402,7 @@
 
   .main {
     max-width: 43.5rem;
-    margin-inline: auto;  
+    margin-inline: auto;
   }
 
   .image {
