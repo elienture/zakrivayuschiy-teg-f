@@ -314,11 +314,10 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 15px 21px;
   gap: 8px;
   width: 100%;
   padding: 15px 0;
-  cursor: pointer; 
+  cursor: pointer;
   inline-size: 306px;
 }
 
