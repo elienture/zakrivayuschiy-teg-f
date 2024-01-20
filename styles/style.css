@@ -23,24 +23,26 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
   color: var(--text-color);
-  font-family: var(--main-font-family);
+  font-family: var(--main-font-family, "Inter", sans-serif);
   font-variation-settings: "wght" var(--font-normal-weight);
 }
 
 .header {
   display: grid;
-  height: 323px;
+  max-width: 43.75rem;
+  width: 100%;
   justify-content: center;
   justify-items: center;
-  font-family: "PressStart2P";
+  font-family: "PressStart2P", fantasy;
   background: var(--page-background-color);
   border: 2px solid var(--border-color);
-  margin-top: 102px;
+  margin-block-start: 104px;
+  margin-block-end: 100px;
   text-transform: uppercase;
 }
 
 .header_title {
-  font-size: 49px;
+  font-size: clamp(49px, 43px + 1.529vw, 65px);
   padding-top: 120px;
 }
 
@@ -53,8 +55,9 @@
 .theme-menu__list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   padding-bottom: 25px;
+  padding-inline-start: 20px;
 }
 
 .theme-menu__button {
@@ -63,6 +66,8 @@
   background: transparent;
   font-size: 14px;
   text-transform: uppercase;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .theme-menu__button:hover {
@@ -81,6 +86,8 @@
 .theme-menu__button:disabled::before {
   content: "▶";
   position: absolute;
+  top: 0;
+  left: 0;
   animation: arrow 0.5s infinite ease-in-out reverse;
   inset-inline-start: -20px;
 }
@@ -88,8 +95,13 @@
 .theme-menu__button::after {
   content: "";
   position: absolute;
-  display: block;
-  block-size: 3px;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  top: 100%;
+  margin-top: 1px;
+  background-color: var(--border-color);
   transform: scaleX(0);
   transition: transform 0.3s ease;
   transform-origin: left;
@@ -97,24 +109,26 @@
 
 .main {
   display: grid;
-  padding-top: 104px;
 }
 
 .card_list {
   display: grid;
-  gap: 54px;
+  gap: 52px;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
   background-color: var(--page-background-color);
   border: 2px solid var(--border-color);
 }
 
 .card_title {
   font-size: 18px;
-  font-weight: var(--font-title-weight);
-  border-bottom: 2px solid var(--border-color);
-  padding: 4px 10px 6px;
+  font-variation-settings: "wght" var(--font-title-weight);
+  padding: 4px 10px;
+  border-block-end: 2px solid var(--border-color);
 }
 
 .card_image_wrapper {
@@ -124,13 +138,13 @@
 
 .card_image_label {
   position: absolute;
-  top: 25px;
-  right: 25px;
+  top: 23px;
+  right: 11px;
   z-index: 1;
   opacity: 0.5;
   color: var(--text-color);
   mix-blend-mode: hard-light;
-  font-family: "PressStart2P";
+  font-family: "PressStart2P", fantasy;
   font-size: 14px;
   line-height: normal;
   text-shadow: -1px 0px var(--page-background-color),
@@ -144,22 +158,20 @@
 ) {
   .card__image_label {
     text-shadow: none;
+    text-stroke: 1px var(--page-background-color);
     -webkit-text-stroke: 1px var(--page-background-color);
   }
 }
 
-.card_content_template {
+.card_content {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  border-block-start: 2px solid var(--border-color);
+  font-variation-settings: "wght" var(--font-normal-weight);
+  font-size: 18px;
+  line-height: 21px;
   padding: 25px 25px 0 25px;
-  font-size: 18px;
-  line-height: 21px;
-  font-weight: var(--font-normal-weight);
-}
-
-.card_content_personal {
-  padding: 27px 25px 25px 25px;
-  font-size: 18px;
-  line-height: 21px;
-  font-weight: var(--font-normal-weight);
 }
 
 .image {
@@ -168,7 +180,6 @@
   object-position: center;
   width: 371px;
   height: 371px;
-  border-bottom: 2px solid var(--border-color);
 }
 
 /* секция фильтров для картинок */
@@ -206,8 +217,8 @@
   display: flex;
   flex-direction: row;
   justify-content: end;
-  padding: 0 25px 25px 0;
-  gap: 10px;
+  padding: 25px 25px 26px 0;
+  gap: 8px;
 }
 
 .card__icon-button {
@@ -240,33 +251,34 @@
   color: var(--text-color);
 }
 
-.button_like {
+.button {
   position: relative;
   border: 2px solid var(--border-color);
+  background: var(--page-background-color);
+  color: var(--text-color);
   transition: box-shadow 0.3s ease;
   cursor: pointer;
 }
 
-.button_like:focus {
+.button:focus {
   outline: none;
 }
 
-.button_like:focus-visible {
+.button:focus-visible {
   box-shadow: 2px 2px 0px 0px var(--border-color);
 }
 
-.button_like::before {
+.button::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
   background-color: var(--border-color);
   transition: transform 0.5s ease-in-out;
   transform: scaleX(0);
   transform-origin: left;
 }
 
-.button_like:hover::before {
+.button:hover::before {
   transform: scaleX(1);
 }
 
@@ -275,8 +287,7 @@
   z-index: 2;
   display: block;
   color: var(--button-text-color);
-  padding: 9px 17px;
-  font-family: "PressStart2P";
+  font-family: "PressStart2P", fantasy;
   font-weight: 400;
   font-size: 14px;
   line-height: 90%;
@@ -286,36 +297,33 @@
 /* конец секции */
 
 .button_save_icon {
+  position: relative;
+  z-index: 2;
   block-size: 28px;
   inline-size: 28px;
+  mix-blend-mode: difference;
+  color: var(--button-text-color);
 }
 
 .button_save_text {
-  color: var(--text-color);
-  font-family: "PressStart2P";
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 90%;
+  margin-top: 4px;
 }
 
 .button_save {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 15px 21px;
   gap: 8px;
-  padding: 15px 18px;
-  background-color: var(--page-background-color);
-  border: 2px solid var(--border-color);
-  cursor: pointer;
+  width: 100%;
+  padding: 15px 0;
+  cursor: pointer; 
+  inline-size: 306px;
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 54px 25px 102px 25px;
+.button_save_div {
+  margin: 50px auto 0;
 }
 
 /* секция dialog */
@@ -325,7 +333,7 @@
   padding: 32px 42px;
   border: 2px solid var(--border-color);
   background-color: var(--page-background-color);
-  font-family: "PressStart2P";
+  font-family: "PressStart2P", fantasy;
   color: var(--text-color);
   font-size: 14px;
   font-weight: 400;
@@ -361,10 +369,10 @@
   display: grid;
   grid-area: 2 / 1 / 3 / 3;
   width: 100%;
+  height: 38px;
+  padding: 9px 17px;
   justify-self: center;
   align-self: center;
-  border: 2px solid var(--border-color);
-  background-color: var(--page-background-color);
   cursor: pointer;
 }
 
@@ -380,13 +388,11 @@
 
 @media (width > 376px) {
   .header {
-    max-width: 43.5rem;
-    height: 22.75rem;
     margin-inline: auto;
+    margin-block-start: 100px;
   }
 
   .header_title {
-    font-size: 65px;
     padding-block-start: 8.5rem;
   }
 
@@ -396,7 +402,6 @@
   }
 
   .theme-menu__list {
-    padding-inline-start: 16px;
     gap: 12px;
   }
 
@@ -411,16 +416,21 @@
   }
 
   .card_list {
-    gap: 57px;
+    gap: 52px;
   }
 
+  .card_image_label {
+    top: 25px;
+    right: 27px;
+  }
   .button_save {
     flex-direction: row;
-    margin-top: 48px;
+    inline-size: 339px;
   }
 
   .button_save_icon {
     block-size: 21px;
     inline-size: 21px;
+    margin-left: 17px;
   }
 }

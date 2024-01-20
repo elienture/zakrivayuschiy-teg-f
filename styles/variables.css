@@ -1,24 +1,24 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
 
 :root {
-    --page-background-color: white;
-    --page-background-image: repeating-linear-gradient(
-        to left,
-        #d3d3d3 0 2px,
-        rgb(211 211 211 / 0%) 2px 4px
-        ),
-        repeating-linear-gradient(
-        to bottom,
-        #d3d3d3 0 2px,
-        rgb(211 211 211 / 0%) 2px 4px
-        ),
-        linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a);
-    --border-color: black;
-    --text-color: #000;
-    --main-font-family: "Inter", sans-serif;
-    --font-normal-weight: 400;
-    --font-title-weight: 700;
-    --heart-contour-color: black;
-    --heart-main-body-color: none;
-    --heart-sparks-color: #FF0000;
+  --page-background-color: white;
+  --page-background-image: repeating-linear-gradient(
+      to left,
+      #d3d3d3 0 2px,
+      rgb(211 211 211 / 0%) 2px 4px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      #d3d3d3 0 2px,
+      rgb(211 211 211 / 0%) 2px 4px
+    ),
+    linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a);
+  --border-color: black;
+  --text-color: #000;
+  --main-font-family: "Inter", sans-serif;
+  --font-normal-weight: 400;
+  --font-title-weight: 700;
+  --heart-contour-color: black;
+  --heart-main-body-color: none;
+  --heart-sparks-color: #ff0000;
 }
